@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-import { TReview } from "./review.interface";
+import { TReview } from "./reply.interface";
 
 const reviewSchema = new Schema<TReview>(
   {

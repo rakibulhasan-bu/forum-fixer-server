@@ -1,5 +1,5 @@
-import { TCategory } from "./category.interface";
-import Category from "./category.model";
+import { TCategory } from "./issue.interface";
+import Category from "./issue.model";
 
 const createCategoryIntoDB = async (category: TCategory) => {
   return await Category.create(category);

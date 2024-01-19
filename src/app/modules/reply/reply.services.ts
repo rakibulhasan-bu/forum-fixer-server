@@ -1,5 +1,5 @@
-import { TReview } from "./review.interface";
-import Review from "./review.model";
+import { TReview } from "./reply.interface";
+import Review from "./reply.model";
 
 const createReviewIntoDB = async (reviewData: TReview) => {
   return (await Review.create(reviewData)).populate({

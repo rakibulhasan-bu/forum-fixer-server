@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { TCategory } from "./category.interface";
+import { TCategory } from "./issue.interface";
 
 const CategorySchema = new Schema<TCategory>(
   {

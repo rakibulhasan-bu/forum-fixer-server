@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CatchAsyncError } from "../../utils/CatchAsyncError";
-import { categoryServices } from "./category.service";
+import { categoryServices } from "./issue.service";
 
 const createCategory = CatchAsyncError(async (req: Request, res: Response) => {
   const category = req.body;

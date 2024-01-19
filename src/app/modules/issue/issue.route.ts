@@ -1,7 +1,7 @@
 import express from "express";
-import { categoryController } from "./category.controller";
+import { categoryController } from "./issue.controller";
 import validateRequest from "../../middleware/validateRequest";
-import { categoryValidation } from "./category.validation";
+import { categoryValidation } from "./issue.validation";
 import auth from "../../middleware/auth";
 import USER_ROLE from "../user/user.const";
 
