@@ -16,6 +16,32 @@ const createIssue = CatchAsyncError(async (req: Request, res: Response) => {
   });
 });
 
+const likeIssue = CatchAsyncError(async (req: Request, res: Response) => {
+  const { issueId } = req.params;
+
+  const result = await issueServices.likeIssueIntoDB(issueId);
+
+  sendRes(res, {
+    success: true,
+    statusCode: 201,
+    message: "Issue liked successful!",
+    data: result,
+  });
+});
+
+const unlikeIssue = CatchAsyncError(async (req: Request, res: Response) => {
+  const { issueId } = req.params;
+
+  const result = await issueServices.unlikeIssueIntoDB(issueId);
+
+  sendRes(res, {
+    success: true,
+    statusCode: 201,
+    message: "Issue unlike successful!",
+    data: result,
+  });
+});
+
 const getAllIssues = CatchAsyncError(async (req: Request, res: Response) => {
   const result = await issueServices.getAllIssueFromDB();
   sendRes(res, {
@@ -28,5 +54,7 @@ const getAllIssues = CatchAsyncError(async (req: Request, res: Response) => {
 
 export const issueController = {
   createIssue,
+  likeIssue,
+  unlikeIssue,
   getAllIssues,
 };

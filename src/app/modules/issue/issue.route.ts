@@ -11,6 +11,10 @@ issueRoute.post(
   issueController.createIssue,
 );
 
+issueRoute.patch("/issue/:issueId/like", issueController.likeIssue);
+
+issueRoute.patch("/issue/:issueId/unlike", issueController.unlikeIssue);
+
 issueRoute.get("/issues", issueController.getAllIssues);
 
 export default issueRoute;

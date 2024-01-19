@@ -5,15 +5,18 @@ import config from "../../config";
 
 const userSchema = new Schema<TUser>(
   {
-    username: {
+    name: {
       type: String,
       required: true,
-      unique: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
+    },
+    avatar: {
+      type: String,
+      required: false,
     },
     password: {
       type: String,
