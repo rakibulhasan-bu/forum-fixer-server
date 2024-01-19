@@ -1,31 +1,32 @@
 import { Request, Response } from "express";
 import { CatchAsyncError } from "../../utils/CatchAsyncError";
-import { categoryServices } from "./issue.service";
+import { issueServices } from "./issue.service";
+import sendRes from "../../utils/sendResponse";
 
-const createCategory = CatchAsyncError(async (req: Request, res: Response) => {
-  const category = req.body;
-  category.createdBy = req.user._id;
+const createIssue = CatchAsyncError(async (req: Request, res: Response) => {
+  const issue = req.body;
+  issue.author = req.user._id;
 
-  const result = await categoryServices.createCategoryIntoDB(category);
-  res.status(201).json({
+  const result = await issueServices.createIssueIntoDB(issue);
+  sendRes(res, {
     success: true,
     statusCode: 201,
-    message: "Category created successfully",
+    message: "Issue created successfully!",
     data: result,
   });
 });
 
-const getAllCategory = CatchAsyncError(async (req: Request, res: Response) => {
-  const result = await categoryServices.getAllCategoryFromDB();
-  res.status(200).json({
+const getAllIssues = CatchAsyncError(async (req: Request, res: Response) => {
+  const result = await issueServices.getAllIssueFromDB();
+  sendRes(res, {
     success: true,
     statusCode: 200,
-    message: "Categories retrieved successfully",
+    message: "Issues retrieved successfully",
     data: result,
   });
 });
 
-export const categoryController = {
-  createCategory,
-  getAllCategory,
+export const issueController = {
+  createIssue,
+  getAllIssues,
 };

@@ -1,11 +1,13 @@
 import { z } from "zod";
 
-const categoryValidationSchema = z.object({
+const issueValidationSchema = z.object({
   body: z.object({
-    name: z.string().trim().min(2),
+    title: z.string().trim().min(6),
+    shortDescription: z.string().trim().min(10),
+    description: z.string().trim().min(20),
   }),
 });
 
-export const categoryValidation = {
-  categoryValidationSchema,
+export const issueValidation = {
+  issueValidationSchema,
 };

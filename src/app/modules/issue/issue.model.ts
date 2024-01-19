@@ -1,21 +1,44 @@
 import { Schema, model } from "mongoose";
-import { TCategory } from "./issue.interface";
+import { TIssue } from "./issue.interface";
 
-const CategorySchema = new Schema<TCategory>(
+const IssueSchema = new Schema<TIssue>(
   {
-    name: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    createdBy: {
+    author: {
       type: Schema.Types.ObjectId,
       ref: "User",
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    shortDescription: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    likes: {
+      type: Number,
+      default: 0,
+    },
+    unlike: {
+      type: Number,
+      default: 0,
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+    repliesNumber: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true },
 );
 
-const Category = model("Category", CategorySchema);
+const Issue = model("Issue", IssueSchema);
 
-export default Category;
+export default Issue;

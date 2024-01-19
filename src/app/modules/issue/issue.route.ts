@@ -1,19 +1,16 @@
 import express from "express";
-import { categoryController } from "./issue.controller";
+import { issueController } from "./issue.controller";
 import validateRequest from "../../middleware/validateRequest";
-import { categoryValidation } from "./issue.validation";
-import auth from "../../middleware/auth";
-import USER_ROLE from "../user/user.const";
+import { issueValidation } from "./issue.validation";
 
-const categoryRoute = express.Router();
+const issueRoute = express.Router();
 
-categoryRoute.post(
-  "/categories",
-  auth(USER_ROLE.admin),
-  validateRequest(categoryValidation.categoryValidationSchema),
-  categoryController.createCategory,
+issueRoute.post(
+  "/issue",
+  validateRequest(issueValidation.issueValidationSchema),
+  issueController.createIssue,
 );
 
-categoryRoute.get("/categories", categoryController.getAllCategory);
+issueRoute.get("/issues", issueController.getAllIssues);
 
-export default categoryRoute;
+export default issueRoute;

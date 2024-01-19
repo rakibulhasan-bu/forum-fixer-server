@@ -1,21 +1,21 @@
-import { TCategory } from "./issue.interface";
-import Category from "./issue.model";
+import { TIssue } from "./issue.interface";
+import Issue from "./issue.model";
 
-const createCategoryIntoDB = async (category: TCategory) => {
-  return await Category.create(category);
+const createIssueIntoDB = async (issue: TIssue) => {
+  return await Issue.create(issue);
 };
 
-const getAllCategoryFromDB = async () => {
-  const result = await Category.find().populate({
-    path: "createdBy",
+const getAllIssueFromDB = async () => {
+  const result = await Issue.find().populate({
+    path: "author",
     select: "_id username email role",
   });
   return {
-    categories: result,
+    issues: result,
   };
 };
 
-export const categoryServices = {
-  createCategoryIntoDB,
-  getAllCategoryFromDB,
+export const issueServices = {
+  createIssueIntoDB,
+  getAllIssueFromDB,
 };
