@@ -1,11 +1,10 @@
 import { z } from "zod";
 
-const reviewValidationSchema = z.object({
+const replyValidationSchema = z.object({
   body: z.object({
-    courseId: z.string(),
-    rating: z.number(),
-    review: z.string().trim().min(3),
+    issueId: z.string(),
+    replyText: z.string().trim().min(5),
   }),
 });
 
-export const reviewValidation = { reviewValidationSchema };
+export const replyValidation = { replyValidationSchema };

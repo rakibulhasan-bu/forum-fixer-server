@@ -1,8 +1,7 @@
 import { Types } from "mongoose";
 
-export interface TReview {
-  courseId: Types.ObjectId;
-  rating: number;
-  review: string;
-  createdBy: Types.ObjectId;
+export interface TReply {
+  issueId: Types.ObjectId;
+  userId: Types.ObjectId;
+  replyText: string;
 }

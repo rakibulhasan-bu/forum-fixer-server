@@ -1,28 +1,29 @@
 import { Request, Response } from "express";
-import { reviewService } from "./reply.services";
+import { replyServices } from "./reply.services";
 import { CatchAsyncError } from "../../utils/CatchAsyncError";
-// import AppError from "../../error/AppError";
+import { issueServices } from "../issue/issue.service";
+import AppError from "../../error/AppError";
+import sendRes from "../../utils/sendResponse";
 
-const createReview = CatchAsyncError(async (req: Request, res: Response) => {
-  const review = req.body;
-  review.createdBy = req.user._id;
+const createReply = CatchAsyncError(async (req: Request, res: Response) => {
+  const reply = req.body;
+  reply.userId = req.user._id;
 
-  // const isCourseExist = await courseServices.getSingleCourseById(
-  //   review?.courseId,
-  // );
-  // if (!isCourseExist) {
-  //   throw new AppError(404, "Course id not valid!");
-  // }
+  const isIssueExist = await issueServices.getSingleIssueFromDB(reply?.issueId);
+  if (!isIssueExist) {
+    throw new AppError(404, "Issue id not valid!");
+  }
 
-  const result = await reviewService.createReviewIntoDB(review);
-  res.status(201).json({
+  const result = await replyServices.createReplyIntoDB(reply);
+
+  sendRes(res, {
     success: true,
     statusCode: 201,
-    message: "Review created successfully",
+    message: "Reply created successfully",
     data: result,
   });
 });
 
-export const reviewController = {
-  createReview,
+export const replyController = {
+  createReply,
 };

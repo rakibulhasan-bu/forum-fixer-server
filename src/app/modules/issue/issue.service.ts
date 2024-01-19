@@ -6,6 +6,10 @@ const createIssueIntoDB = async (issue: TIssue) => {
   return await Issue.create(issue);
 };
 
+const getSingleIssueFromDB = async (issueId: string) => {
+  return await Issue.findById(issueId);
+};
+
 const likeIssueIntoDB = async (issueId: string) => {
   const issue = await Issue.findById(issueId);
 
@@ -47,6 +51,7 @@ const getAllIssueFromDB = async () => {
 
 export const issueServices = {
   createIssueIntoDB,
+  getSingleIssueFromDB,
   likeIssueIntoDB,
   unlikeIssueIntoDB,
   getAllIssueFromDB,

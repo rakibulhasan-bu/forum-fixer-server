@@ -1,16 +1,16 @@
 import express from "express";
-import { reviewController } from "./reply.controller";
+import { replyController } from "./reply.controller";
 import validateRequest from "../../middleware/validateRequest";
-import { reviewValidation } from "./reply.validation";
+import { replyValidation } from "./reply.validation";
 import auth from "../../middleware/auth";
 import USER_ROLE from "../user/user.const";
 const reviewRouter = express.Router();
 
 reviewRouter.post(
-  "/reviews",
+  "/reply",
   auth(USER_ROLE.user),
-  validateRequest(reviewValidation.reviewValidationSchema),
-  reviewController.createReview,
+  validateRequest(replyValidation.replyValidationSchema),
+  replyController.createReply,
 );
 
 export default reviewRouter;

@@ -1,24 +1,26 @@
 import { Schema, model } from "mongoose";
 
-import { TReview } from "./reply.interface";
+import { TReply } from "./reply.interface";
 
-const reviewSchema = new Schema<TReview>(
+const replySchema = new Schema<TReply>(
   {
-    courseId: {
+    issueId: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "Course",
+      ref: "Issue",
     },
-    rating: { type: Number },
-    review: { type: String },
-    createdBy: {
+    userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
+    },
+    replyText: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true },
 );
 
-const Review = model<TReview>("Review", reviewSchema);
+const Reply = model<TReply>("Reply", replySchema);
 
-export default Review;
+export default Reply;
