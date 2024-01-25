@@ -16,7 +16,6 @@ const userSchema = new Schema<TUser>(
     },
     avatar: {
       type: String,
-      required: false,
     },
     password: {
       type: String,
@@ -35,7 +34,6 @@ const userSchema = new Schema<TUser>(
       type: String,
       enum: ["user", "admin"],
       default: "user",
-      required: true,
     },
   },
   { timestamps: true, versionKey: false },
